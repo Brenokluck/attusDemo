@@ -32,4 +32,7 @@ public class MovieBase {
     private int review_stars;
     private int duration;
     private int views;
+    private boolean watched;
+    private boolean watchLater;
+    private boolean blackList;
 }
