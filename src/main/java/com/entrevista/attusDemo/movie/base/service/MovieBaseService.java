@@ -19,12 +19,8 @@ public class MovieBaseService extends CrudServiceImpl<MovieBase, Long> {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            String teste = requestIMDBMovieData(movieID);
             MovieBase movieBaseDTO = mapper.readValue(requestIMDBMovieData(movieID), MovieBase.class);
-
-            log.info("aqui: {}", movieBaseDTO);
-
-//        create(newMovieBase);
+            create(movieBaseDTO);
         } catch (Exception e) {
             log.error("[createNewMovieInDB] - erro ao tentar salvar o filme do Banco de dados");
             throw e;

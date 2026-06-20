@@ -31,7 +31,7 @@ public class MovieBase {
     private Date released;
     private String imdbRating;
     private String runtime;
-    private boolean watched;
-    private boolean watchLater;
-    private boolean blackList;
+    private Boolean watched;
+    private Boolean watchLater;
+    private Boolean blackList;
 }
