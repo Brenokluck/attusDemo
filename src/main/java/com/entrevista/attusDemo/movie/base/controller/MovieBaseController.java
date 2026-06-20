@@ -36,6 +36,16 @@ public class MovieBaseController extends CrudController<MovieBase, Long> {
         }
     }
 
+    @PutMapping("/interaction")
+    public ResponseEntity<String> interactWithMovie(@PathVariable String movieID, @RequestBody MovieBaseDTO movieBaseDTO) {
+        try {
+            movieBaseService.interactWithMovie(movieID, movieBaseDTO);
+            return new ResponseEntity<>("Filme alterado com sucesso", HttpStatus.OK);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @GetMapping("/favorite")
     public ResponseEntity<List<MovieBaseDTO>> getFavorite(@RequestParam int page, @RequestParam(defaultValue = "12", required = false) int size){
         Pageable pageable = PageRequest.of(page, size);

@@ -36,6 +36,15 @@ public class MovieBaseService extends CrudServiceImpl<MovieBase, Long> {
         }
     }
 
+    public void interactWithMovie(String movieID, MovieBaseDTO movieBaseDTO) {
+        try {
+            repositoryMovieBase.alterMovie(movieID, movieBaseDTO.getBlackList(), movieBaseDTO.getWatched(), movieBaseDTO.getWatchLater());
+        } catch (Exception e) {
+            log.error("[interactWithMovie] - erro interagir com o filme");
+            throw e;
+        }
+    }
+
     public String requestIMDBMovieData(String movieID) {
         RestClient restClient = RestClient.create();
 
