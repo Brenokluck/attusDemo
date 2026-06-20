@@ -14,14 +14,14 @@ import java.util.Date;
 @AllArgsConstructor
 public class MovieBaseDTO {
     private Long id;
-    private String title;
-    private String description;
-    private String imdb_id;
-    private Date launch_date;
-    private int review_stars;
-    private int duration;
-    private int views;
-    private boolean watched;
-    private boolean watchLater;
-    private boolean blackList;
+    private String Title;
+    private String Plot;
+    private String imdbID;
+    private Date Released;
+    private String imdbRating;
+    private String Runtime;
+    private String BoxOffice;
+    private Boolean watched;
+    private Boolean watchLater;
+    private Boolean blackList;
 }

@@ -34,7 +34,7 @@ public class MovieBase {
     private String plot;
 
     @JsonProperty("imdbID")
-    private String imdb_id;
+    private String imdbID;
 
     @JsonProperty("Released")
     @JsonFormat(pattern="dd MMM yyyy")
@@ -45,6 +45,9 @@ public class MovieBase {
 
     @JsonProperty("Runtime")
     private String runtime;
+
+    @JsonProperty("BoxOffice")
+    private String boxOffice;
 
     private Boolean watched;
     private Boolean watchLater;
