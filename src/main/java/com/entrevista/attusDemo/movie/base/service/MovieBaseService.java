@@ -50,7 +50,7 @@ public class MovieBaseService extends CrudServiceImpl<MovieBase, Long> {
         try {
             Page<MovieBase> movieBasePage = repositoryMovieBase.getBlackList(pageable);
 
-            if(movieBasePage.isEmpty()) {
+            if (movieBasePage.isEmpty()) {
                 throw new RuntimeException();
             }
 
@@ -65,9 +65,9 @@ public class MovieBaseService extends CrudServiceImpl<MovieBase, Long> {
                                 .imdbRating(content.getImdbRating())
                                 .Runtime(content.getRuntime())
                                 .BoxOffice(content.getBoxOffice())
-                                .watched(getWatched())
-                                .watchLater(getWatchLater())
-                                .blackList(getBlackList()).build();
+                                .watched(content.getWatched())
+                                .watchLater(content.getWatchLater())
+                                .blackList(content.getBlackList()).build();
                     }).collect(Collectors.toList());
             return movieBaseDTOS;
         } catch (RuntimeException e) {
@@ -76,11 +76,63 @@ public class MovieBaseService extends CrudServiceImpl<MovieBase, Long> {
         }
     }
 
-    public MovieBase getFavoriteList(Pageable pageable) {
+    public List<MovieBaseDTO> getFavoriteList(Pageable pageable) {
+        try {
+            Page<MovieBase> movieBasePage = repositoryMovieBase.getFavoriteList(pageable);
 
+            if (movieBasePage.isEmpty()) {
+                throw new RuntimeException();
+            }
+
+            List<MovieBaseDTO> movieBaseDTOS = movieBasePage.getContent().stream()
+                    .map(content -> {
+                        return MovieBaseDTO.builder()
+                                .id(content.getId())
+                                .Title(content.getTitle())
+                                .Plot(content.getPlot())
+                                .imdbID(content.getImdbID())
+                                .Released(content.getReleased())
+                                .imdbRating(content.getImdbRating())
+                                .Runtime(content.getRuntime())
+                                .BoxOffice(content.getBoxOffice())
+                                .watched(content.getWatched())
+                                .watchLater(content.getWatchLater())
+                                .blackList(content.getBlackList()).build();
+                    }).collect(Collectors.toList());
+            return movieBaseDTOS;
+        } catch (RuntimeException e) {
+            log.error("[getFavoriteList] - erro ao tentar salvar o filme na lista de favoritos");
+            throw e;
+        }
     }
 
-    public MovieBase getWatchedList(Pageable pageable) {
+    public List<MovieBaseDTO> getWatchedList(Pageable pageable) {
+        try {
+            Page<MovieBase> movieBasePage = repositoryMovieBase.getWatchedList(pageable);
 
+            if (movieBasePage.isEmpty()) {
+                throw new RuntimeException();
+            }
+
+            List<MovieBaseDTO> movieBaseDTOS = movieBasePage.getContent().stream()
+                    .map(content -> {
+                        return MovieBaseDTO.builder()
+                                .id(content.getId())
+                                .Title(content.getTitle())
+                                .Plot(content.getPlot())
+                                .imdbID(content.getImdbID())
+                                .Released(content.getReleased())
+                                .imdbRating(content.getImdbRating())
+                                .Runtime(content.getRuntime())
+                                .BoxOffice(content.getBoxOffice())
+                                .watched(content.getWatched())
+                                .watchLater(content.getWatchLater())
+                                .blackList(content.getBlackList()).build();
+                    }).collect(Collectors.toList());
+            return movieBaseDTOS;
+        } catch (RuntimeException e) {
+            log.error("[getWatchedList] - erro ao tentar salvar o filme na lista de assistidos");
+            throw e;
+        }
     }
 }
