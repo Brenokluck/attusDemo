@@ -25,13 +25,12 @@ public class MovieBase {
     private Long id;
 
     private String title;
-    private String description;
+    private String plot;
     private String imdb_id;
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date launch_date;
-    private int review_stars;
-    private int duration;
-    private int views;
+    private Date released;
+    private String imdbRating;
+    private String runtime;
     private boolean watched;
     private boolean watchLater;
     private boolean blackList;
